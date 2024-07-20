@@ -1,10 +1,10 @@
 import React from 'react'
-import { StudentForm } from './compoenents/StudentFrom.tsx';
+import { Students } from './components/index.tsx';
 
 function App() {
   return (
     <div className="app">
-      <StudentForm />
+      <Students />
     </div>
   );
 }
