@@ -8,12 +8,6 @@ export const StudentForm = () => {
   const [add, setAdd] = useState(String)
   const [mobile, setMobile] = useState(String)
 
-  useEffect(() => {
-    //load student
-    // setStudents()
-  }) 
-
-
   const onRegister = async (e) => {
     e.preventDefault()
     await registerStudent(name, add, Number(mobile))
@@ -34,5 +28,6 @@ export const StudentForm = () => {
           <input type='text' id='mobile' name='mobile' minLength={10} maxLength={10} value={mobile} onChange={(e) => setMobile(e.target.value)}></input><br /><br />
           <button type='submit' onClick={onRegister}>Register</button>
         </form>
-      </div></>)
+      </div>
+      </>)
 }
