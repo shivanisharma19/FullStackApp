@@ -1,7 +1,9 @@
 import React, { FormEventHandler, useEffect, useState } from 'react'
-import './styles.css'
+import uuid from "react-uuid"
 import { registerStudent } from './slice.ts'
 import { student } from '../common/interfaces.ts'
+import './formStyles.css'
+
 
 export const StudentForm = () => {
   const [students, setStudents] = useState()
@@ -12,7 +14,9 @@ export const StudentForm = () => {
   const onRegister = async (e) => {
     e.preventDefault()
     const mobile = Number(number)
-    await registerStudent({studentName, studentAddress, mobile})
+    const id = uuid()
+    const newStudent : student = { id, studentName, studentAddress, mobile }
+    await registerStudent(newStudent)
     setName('')
     setAdd('')
     setMobile('')
@@ -28,7 +32,7 @@ export const StudentForm = () => {
           <input type='text' id='address' name='address' value={studentAddress} onChange={(e) => setAdd(e.target.value)}></input><br /><br />
           <label htmlFor='mobile'> Mobile </label><br />
           <input type='umber' id='mobile' name='mobile' minLength={10} maxLength={10} value={number} onChange={(e) => setMobile(e.target.value)}></input><br /><br />
-          <button type='submit' onClick={onRegister}>Register</button>
+          <button type='submit' onClick={onRegister} disabled={!(studentName && studentAddress && number)}>Register</button>
         </form>
       </div>
       </>)
