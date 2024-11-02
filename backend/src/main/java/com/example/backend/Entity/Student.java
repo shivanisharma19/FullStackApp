@@ -8,12 +8,14 @@ public class Student {
 
     @Id
     private String _id;
+    private String _studentId;
     private String studentName;
     private String studentAddress;
     private Number mobile;
 
-    public Student(String _id, String studentName, String studentAddress, Number mobile) {
+    public Student(String _id, String studentId, String studentName, String studentAddress, Number mobile) {
         this._id = _id;
+        this._studentId = studentId;
         this.studentName = studentName;
         this.studentAddress = studentAddress;
         this.mobile = mobile;
@@ -58,6 +60,7 @@ public class Student {
     public String toString() {
         return "Student{" +
                 "_id='" + _id + '\'' +
+                ", studentId='" + _studentId + '\''+
                 ", studentName='" + studentName + '\'' +
                 ", studentAddress='" + studentAddress + '\'' +
                 ", mobile=" + mobile +

@@ -15,6 +15,8 @@ public class StudentServices {
         repo.save(students);
     }
 
+    public void delete(Student student) {repo.delete(student); }
+
     public Iterable<Student> listAll() {
         return this.repo.findAll();
     }

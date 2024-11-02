@@ -1,22 +1,22 @@
 import React, { FormEventHandler, useEffect, useState } from 'react'
-import './styles.css'
-import { registerStudent } from './store.ts'
+import uuid from "react-uuid"
+import { registerStudent } from './slice.ts'
+import { student } from '../common/interfaces.ts'
+import './formStyles.css'
+
 
 export const StudentForm = () => {
   const [students, setStudents] = useState()
-  const [name, setName] = useState(String)
-  const [add, setAdd] = useState(String)
-  const [mobile, setMobile] = useState(String)
-
-  useEffect(() => {
-    //load student
-    // setStudents()
-  }) 
-
+  const [studentName, setName] = useState(String)
+  const [studentAddress, setAdd] = useState(String)
+  const [number, setMobile] = useState(String)
 
   const onRegister = async (e) => {
     e.preventDefault()
-    await registerStudent(name, add, Number(mobile))
+    const mobile = Number(number)
+    const id = uuid()
+    const newStudent : student = { id, studentName, studentAddress, mobile }
+    await registerStudent(newStudent)
     setName('')
     setAdd('')
     setMobile('')
@@ -27,12 +27,13 @@ export const StudentForm = () => {
     <div className='form-wrapper'>
         <form>
           <label htmlFor='name'> Student Name </label><br />
-          <input type='text' id='name' name='name' value={name} onChange={(e) => setName(e.target.value)}></input><br /><br />
+          <input type='text' id='name' name='name' value={studentName} onChange={(e) => setName(e.target.value)}></input><br /><br />
           <label htmlFor='address'> Address </label><br />
-          <input type='text' id='address' name='address' value={add} onChange={(e) => setAdd(e.target.value)}></input><br /><br />
+          <input type='text' id='address' name='address' value={studentAddress} onChange={(e) => setAdd(e.target.value)}></input><br /><br />
           <label htmlFor='mobile'> Mobile </label><br />
-          <input type='text' id='mobile' name='mobile' minLength={10} maxLength={10} value={mobile} onChange={(e) => setMobile(e.target.value)}></input><br /><br />
-          <button type='submit' onClick={onRegister}>Register</button>
+          <input type='umber' id='mobile' name='mobile' minLength={10} maxLength={10} value={number} onChange={(e) => setMobile(e.target.value)}></input><br /><br />
+          <button type='submit' onClick={onRegister} disabled={!(studentName && studentAddress && number)}>Register</button>
         </form>
-      </div></>)
+      </div>
+      </>)
 }

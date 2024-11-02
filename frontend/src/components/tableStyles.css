@@ -1,0 +1,40 @@
+.table-container {
+    height: 300px;
+    overflow-y: scroll;
+}
+
+table {
+  min-width: 90%;
+  margin-left: 80px;
+  justify-content: center;
+  background-color:rgb(98, 96, 96);
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    z-index: 101;
+}
+
+thead th {
+        color: black;
+        background-color:rgb(78, 77, 77);
+        text-align: left;
+        padding: 10px;
+        font-weight: bolder;
+        font-size: large;
+}
+    
+tbody td {
+        color:black;
+        text-align: left;
+        text-wrap: wrap;
+        padding: 10px;
+        text-wrap:wrap;
+}
+
+.edit-button-wrapper {
+    &> svg {
+        margin: 5px;
+    }
+}
