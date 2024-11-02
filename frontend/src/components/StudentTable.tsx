@@ -27,7 +27,7 @@ getStudentDetails()
 }, [])     
 
       return (
-      <div className="table_containter">
+      <div className="table-container">
         <table>
           <thead>
             <tr>
@@ -40,6 +40,9 @@ getStudentDetails()
               <th scope="col">
                 Student Mobile
               </th>
+              <th scope="col" className="options">
+                Options
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -48,6 +51,10 @@ getStudentDetails()
              <td>{student.studentName}</td>
              <td>{student.studentAddress}</td>
              <td>{student.mobile}</td>
+             {/* <td style={{ height: 0}}>
+              <svg className="edit"></svg>
+              <svg className="delete"></svg>
+             </td> */}
              </tr>)}
           </tbody>
         </table>
