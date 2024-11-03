@@ -33,10 +33,8 @@ public class StudentController {
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    private Student deleteStudent(@RequestBody Student student, @PathVariable(name="id")String _id) {
-        student.set_id(_id);
-        studentServices.delete(student);
-        return student;
+    private void deleteStudent(@RequestBody String studentId, @PathVariable(name="id")String _id) {
+        studentServices.delete(studentId);
     }
 
 }
