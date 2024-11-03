@@ -5,7 +5,7 @@ import { student } from '../common/interfaces.ts'
 import './formStyles.css'
 
 
-export const StudentForm = () => {
+export const StudentForm = ({ setStudentList }) => {
   const [students, setStudents] = useState()
   const [studentName, setName] = useState(String)
   const [studentAddress, setAdd] = useState(String)
@@ -16,10 +16,12 @@ export const StudentForm = () => {
     const mobile = Number(number)
     const id = uuid()
     const newStudent : student = { id, studentName, studentAddress, mobile }
-    await registerStudent(newStudent)
+    if(await registerStudent(newStudent)) {
+    setStudentList((prevList) => [...prevList, newStudent])
     setName('')
     setAdd('')
     setMobile('')
+    }
   }
 
     return ( 

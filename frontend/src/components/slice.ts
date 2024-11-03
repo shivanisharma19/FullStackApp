@@ -3,18 +3,6 @@ import { Action, createSlice } from '@reduxjs/toolkit'
 import { student } from '../common/interfaces'
 
 
-// export const studentList = createSlice({
-//     name: 'students',
-//     initialState: [] as student[],
-//     reducers: {
-//          setStudentList : (state, action) => {
-//          window.localStorage.setItem('studentList', JSON.stringify({...action.payload}))
-//         } 
-//     }
-// }) 
-
-// export const { setStudentList } = studentList.actions
-
 export const registerStudent = async(student: student) => {
 
     try {
@@ -28,26 +16,31 @@ export const registerStudent = async(student: student) => {
         })
         if(response.status === 200) {
             toast.success('Student successfully registered')
+            return true
         }
     } catch (err)
     {
         toast.error('Student not registered !')
+        return false
     }
 }
 
-// export const getStudentDetails = async() => {
-
-//     try {
-//         const response = await fetch('http://localhost:8089/api/v1/student/getAll', {
-//             method: 'GET',
-//             mode: 'cors',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             }
-//         }) 
-//         return response.json()  
-//     } catch (err)
-//     {
-//         toast.error('Student details not available')
-//     }
-// }
+export const getStudentDetails = async () => {
+    try {
+        const response = await fetch('http://localhost:8089/api/v1/student/getAll', {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }) 
+    if (!response.ok) {
+        throw new Error('Failed to fetch student details');
+    }
+    return response.json()
+    } catch (err)
+    {
+        toast.error('Student details not available')
+        return null
+    }
+}
